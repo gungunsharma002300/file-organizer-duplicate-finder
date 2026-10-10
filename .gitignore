@@ -20,3 +20,13 @@ htmlcov/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+
+# Python cache files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local activity history
+activity_log.json
+
