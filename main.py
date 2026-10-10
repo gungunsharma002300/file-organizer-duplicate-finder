@@ -13,6 +13,10 @@ def get_folder_path():
         "\nEnter the folder path to scan: "
     ).strip().strip('"')
 
+    if not folder_input:
+        print("Error: Folder path cannot be empty.")
+        return None
+
     folder = Path(folder_input)
 
     if not folder.exists():
@@ -53,7 +57,7 @@ def organize_menu():
 
 
 def duplicate_menu():
-    """Find duplicates and record the result."""
+    """Find duplicate files and record the result."""
     folder = get_folder_path()
 
     if folder is None:
@@ -89,10 +93,9 @@ def duplicate_menu():
 
         log_activity(
             "Find Duplicates",
-            f"Folder: {folder} | Files scanned: "
-            f"{result['total_files_scanned']} | "
-            f"Duplicate groups: "
-            f"{result['total_duplicate_groups']}",
+            f"Folder: {folder} | "
+            f"Files scanned: {result['total_files_scanned']} | "
+            f"Duplicate groups: {result['total_duplicate_groups']}",
         )
 
         print("\nNo files were deleted.")
@@ -146,9 +149,9 @@ def statistics_menu():
 
         log_activity(
             "File Statistics",
-            f"Folder: {folder} | Total files: "
-            f"{result['total_files']} | Storage: "
-            f"{format_size(result['total_size_bytes'])}",
+            f"Folder: {folder} | "
+            f"Total files: {result['total_files']} | "
+            f"Storage: {format_size(result['total_size_bytes'])}",
         )
 
     except (OSError, ValueError) as error:
@@ -179,7 +182,9 @@ def main():
             statistics_menu()
 
         elif choice == "4":
+            print("OPTION FOUR REACHED", flush=True)
             display_activity_history()
+            input("Press Enter to return to menu...")
 
         elif choice == "5":
             print("\nThank you for using the application!")
@@ -187,6 +192,7 @@ def main():
 
         else:
             print("\nInvalid choice. Please enter 1 to 5.")
+
 
 
 if __name__ == "__main__":
